@@ -1,0 +1,11 @@
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.WinForm.csproj.AssemblyReference.cache
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.WinForm.csproj.SuggestedBindingRedirects.cache
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.WinForm.csproj.GenerateResource.cache
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.WinForm.csproj.CoreCompileInputs.cache
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\bin\Debug\TrafficLightSimulator.exe.config
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\bin\Debug\TrafficLightSimulator.exe
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\bin\Debug\TrafficLightSimulator.pdb
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.Properties.Resources.resources
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.exe
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.pdb
+D:\Project\C#\TrafficLight\TrafficLight.WinForm\obj\Debug\TrafficLightSimulator.MainWindow.resources
