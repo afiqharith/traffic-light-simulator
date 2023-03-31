@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace TrafficLightSimulator
 {
-    public enum EVT
-    {
-        FIRST_LANE_INDEX_ACTIVATED,
-        ONE_CYCLE_COMPLETED,
-        WAIT_STOP_TIMER,
-        NUMS_OF_EVENT,
-    }
-
     public class EventListener
     {
         public static List<bool> EventList = new List<bool>();

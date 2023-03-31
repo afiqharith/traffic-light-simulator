@@ -59,6 +59,7 @@ namespace TrafficLightSimulator
 
         private STEP iAutoNextStep;
 
+        private bool bPowerUpFinish = false;
 
         private TrafficLight[] lane = new TrafficLight[(int)LANE_ID.NUMS_OF_LANE];
 
@@ -67,7 +68,7 @@ namespace TrafficLightSimulator
         {
             InitializeComponent();
 
-            textboxInterval.Text = "1000";
+            textboxInterval.Text = "300";
 
             System.Windows.Forms.Timer systemTimer = new System.Windows.Forms.Timer();
             systemTimer.Enabled = true;
@@ -82,7 +83,7 @@ namespace TrafficLightSimulator
         private void SystemTimer_Tick(object sender, EventArgs e)
         {
             ChangeStep(iAutoNextStep);
-            if (T == null)
+            if (!bPowerUpFinish)
             {
                 PowerUp();
             }
@@ -108,11 +109,12 @@ namespace TrafficLightSimulator
             //Init event listener
             EventListener evt = new EventListener();
 
+            //Start enhancement
             //Thread timerThread = new Thread(new ThreadStart(() =>
             //{
             //    while (true)
             //    {
-            //        Thread.Sleep(1000);
+            //        Thread.Sleep(_interval);
             //        if (EventListener.IsEventActive(EVT.WAIT_STOP_TIMER))
             //        {
             //            Thread.Sleep(100);
@@ -120,26 +122,23 @@ namespace TrafficLightSimulator
             //        }
             //        else
             //        {
-            //            mainSystemCounter++;
+            //            //mainSystemCounter++;
+            //            mainSystemCounter = mainSystemCounter == 16.0 ? 1 : (mainSystemCounter += 1);
             //        }
             //    }
 
             //}));
             //timerThread.Start();
+            //End enhancement
 
-            // Create a traffic light object lane mapping
-            T = new Thread(new ThreadStart(() =>
+            lane = new TrafficLight[]
             {
-                lane = new TrafficLight[]
-                {
                 new TrafficLight(LANE_ID.LANE1, red1, yellow1, green1),
                 new TrafficLight(LANE_ID.LANE2, red2, yellow2, green2),
                 new TrafficLight(LANE_ID.LANE3, red3, yellow3, green3),
                 new TrafficLight(LANE_ID.LANE4, red4, yellow4, green4)
-                };
-            }));
-            T.Start();
-            Thread.Sleep(10);
+            };
+            bPowerUpFinish = true;
         }
 
 
@@ -183,6 +182,27 @@ namespace TrafficLightSimulator
                     break;
 
                 case STEP.AUTO_UPDATE_BROTHERHOOD_TRAFFICLIGHT:
+
+                    //switch (mainSystemCounter)
+                    //{
+                    //    case 10.0:
+                    //        iAutoNextStep = STEP.AUTO_UPDATE_ACTIVE_LANE_TO_YELLOW;
+                    //        break;
+
+                    //    case 14.0:
+                    //        iAutoNextStep = STEP.AUTO_UPDATE_ACTIVE_LANE_TO_BUFFER_RED;
+                    //        break;
+
+                    //    case 16.0:
+                    //        iAutoNextStep = STEP.AUTO_ACTIVATE_NEXT_LANE_INDEX;
+                    //        break;
+
+                    //    default:
+                    //        iAutoNextStep = STEP.AUTO_DETERMINE_NEXT_STEP;
+                    //        break;
+                    //}
+                    //break;
+
                     if (mainSystemCounter == 10.0)
                     {
                         iAutoNextStep = STEP.AUTO_UPDATE_ACTIVE_LANE_TO_YELLOW;
@@ -260,19 +280,16 @@ namespace TrafficLightSimulator
                         iAutoNextStep = STEP.AUTO_STOP_CURRENT_TIMER;
                         break;
                     }
-                    else
-                    {
-                        iAutoNextStep = STEP.AUTO_VERIFY_CURRENT_TIMER;
-                        break;
-                    }
+                    iAutoNextStep = STEP.AUTO_VERIFY_CURRENT_TIMER;
+                    break;
 
                 case STEP.AUTO_STOP_CURRENT_TIMER:
-                    if (EventListener.IsEventActive(EVT.WAIT_STOP_TIMER))
-                    {
-                        Thread.Sleep(100);
-                        break;
-                    }
-                    iAutoNextStep = STEP.AUTO_RECOVERY_AFTER_STOP_TIMER;
+                    //if (EventListener.IsEventActive(EVT.WAIT_STOP_TIMER))
+                    //{
+                    Thread.Sleep(100);
+                    //    break;
+                    //}
+                    //iAutoNextStep = STEP.AUTO_RECOVERY_AFTER_STOP_TIMER;
                     break;
 
                 case STEP.AUTO_RECOVERY_AFTER_STOP_TIMER:
@@ -282,12 +299,8 @@ namespace TrafficLightSimulator
                 default:
                 case STEP.AUTO_VERIFY_CURRENT_TIMER:
                     mainSystemCounter = mainSystemCounter == 16.0 ? 1 : (mainSystemCounter += 1);
-                    //if(mainSystemCounter == 16.0)
-                    //{
-                    //    mainSystemCounter = 0;
-                    //}
                     iAutoNextStep = STEP.AUTO_STORE_CURRENT_ACTIVE_LANE_OBJECT;
-                    Thread.Sleep(_interval);
+                    //Thread.Sleep(_interval);
                     break;
             }
         }
@@ -335,6 +348,7 @@ namespace TrafficLightSimulator
                 EventListener.ResetEvent(EVT.WAIT_STOP_TIMER);
                 AppendRTBText(String.Format("Event reset = ({0}) {1}", (int)EVT.WAIT_STOP_TIMER, EVT.WAIT_STOP_TIMER), Color.Green);
                 buttonStopStart.Text = "Stop";
+                labelMainTimer.Text = "+++";
                 labelMainTimer.ForeColor = Color.Green;
                 iAutoNextStep = STEP.AUTO_DETERMINE_NEXT_STEP;
             }
