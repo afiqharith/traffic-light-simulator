@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLightSimulator.WinForm", "TrafficLight.WinForm\TrafficLightSimulator.WinForm.csproj", "{43ACEA6C-BAEB-48D9-8A1C-B1D463287122}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLightSimulatorWPF", "TrafficLightSimulatorWPF\TrafficLightSimulatorWPF.csproj", "{A54D7D25-D1DF-4611-9EE4-5FE4313D9136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{43ACEA6C-BAEB-48D9-8A1C-B1D463287122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43ACEA6C-BAEB-48D9-8A1C-B1D463287122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43ACEA6C-BAEB-48D9-8A1C-B1D463287122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54D7D25-D1DF-4611-9EE4-5FE4313D9136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54D7D25-D1DF-4611-9EE4-5FE4313D9136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54D7D25-D1DF-4611-9EE4-5FE4313D9136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54D7D25-D1DF-4611-9EE4-5FE4313D9136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

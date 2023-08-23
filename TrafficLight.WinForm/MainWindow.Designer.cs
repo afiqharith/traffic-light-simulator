@@ -564,23 +564,11 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox green1;
-        private System.Windows.Forms.PictureBox yellow1;
-        private System.Windows.Forms.PictureBox red1;
         private System.Windows.Forms.Label labelMainTimer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.PictureBox green2;
-        private System.Windows.Forms.PictureBox yellow2;
-        private System.Windows.Forms.PictureBox red2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.PictureBox green3;
-        private System.Windows.Forms.PictureBox yellow3;
-        private System.Windows.Forms.PictureBox red3;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.PictureBox green4;
-        private System.Windows.Forms.PictureBox yellow4;
-        private System.Windows.Forms.PictureBox red4;
         private System.Windows.Forms.Label timer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -596,6 +584,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelTimerTest;
+        public System.Windows.Forms.PictureBox green1;
+        public System.Windows.Forms.PictureBox yellow1;
+        public System.Windows.Forms.PictureBox red1;
+        public System.Windows.Forms.PictureBox green2;
+        public System.Windows.Forms.PictureBox yellow2;
+        public System.Windows.Forms.PictureBox red2;
+        public System.Windows.Forms.PictureBox green3;
+        public System.Windows.Forms.PictureBox yellow3;
+        public System.Windows.Forms.PictureBox red3;
+        public System.Windows.Forms.PictureBox green4;
+        public System.Windows.Forms.PictureBox yellow4;
+        public System.Windows.Forms.PictureBox red4;
     }
 }
 

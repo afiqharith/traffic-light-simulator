@@ -7,75 +7,44 @@ using System.Windows.Forms;
 
 namespace TrafficLightSimulator
 {
-    public class TrafficLight
+    internal class TrafficLight: LightTowerBase
     {
-        private enum COLOR
+        internal TrafficLight(OBJ_LOC loc, PictureBox red, PictureBox yellow, PictureBox green) :
+            base(OBJ_TYPE.TRAFFIC_LIGHT, loc, red, yellow, green) { }
+
+        internal bool IsNotInStopState()
         {
-            RED,
-            YELLOW,
-            GREEN,
-            NUMS_OF_COLOR,
+            return (STATE)GetCurrentStateMask() > STATE.STOP;
         }
 
-        private PictureBox[] lightColor = new PictureBox[(int)COLOR.NUMS_OF_COLOR];
-
-        public int counter = 0;
-        public bool bCurrentState;
-        public bool bLastState;
-        public LANE_ID id;
-
-        private uint _currentStateMask;
-        public uint currentStateMask
+        #region UI update
+        internal override void EnforeceStateValueOnUi(uint state)
         {
-            get
+            switch ((STATE)state)
             {
-                return _currentStateMask;
-            }
-
-            set
-            {
-                _currentStateMask = value;
-                SetCurrentState(value);
-            }
-        }
-
-        public TrafficLight(LANE_ID id, PictureBox red, PictureBox yellow, PictureBox green)
-        {
-            this.lightColor[(int)COLOR.RED] = red;
-            this.lightColor[(int)COLOR.YELLOW] = yellow;
-            this.lightColor[(int)COLOR.GREEN] = green;
-
-            this.id = id;
-        }
-
-        private void SetCurrentState(uint state)
-        {
-            switch (state)
-            {
-                case 0b_0100:
-                    bCurrentState = true;
-                    lightColor[(int)COLOR.RED].Visible = false;
-                    lightColor[(int)COLOR.YELLOW].Visible = false;
-                    lightColor[(int)COLOR.GREEN].Visible = true;
+                case STATE.MOVE:
+                    foreach (var lightObj in m_lightColor)
+                    {
+                        m_lightColor[lightObj.Key].Visible = (lightObj.Key == COLOR.GREEN) ? true : false;
+                    }
                     break;
 
-                case 0b_0010:
-                    bCurrentState = true;
-                    lightColor[(int)COLOR.RED].Visible = false;
-                    lightColor[(int)COLOR.GREEN].Visible = false;
-                    lightColor[(int)COLOR.YELLOW].Visible = true;
+                case STATE.SLOW:
+                    foreach (var lightObj in m_lightColor)
+                    {
+                        m_lightColor[lightObj.Key].Visible = (lightObj.Key == COLOR.YELLOW) ? true : false;
+                    }
                     break;
 
-                case 0b_0001:
+                case STATE.STOP:
                 default:
-                    bLastState = bCurrentState;
-                    bCurrentState = false;
-                    lightColor[(int)COLOR.YELLOW].Visible = false;
-                    lightColor[(int)COLOR.GREEN].Visible = false;
-                    lightColor[(int)COLOR.RED].Visible = true;
+                    foreach (var lightObj in m_lightColor)
+                    {
+                        m_lightColor[lightObj.Key].Visible = (lightObj.Key == COLOR.RED) ? true : false;
+                    }
                     break;
             }
         }
-
+        #endregion
     }
 }
